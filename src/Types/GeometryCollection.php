@@ -78,7 +78,7 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
         return new static(array_map(function ($geometry_string) {
             $klass = Geometry::getWKTClass($geometry_string);
 
-            return call_user_func($klass.'::fromWKT', $geometry_string);
+            return call_user_func($klass . '::fromWKT', $geometry_string);
         }, $geometry_strings), $srid);
     }
 
@@ -130,7 +130,7 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
         }
 
         if (!is_a($geoJson, FeatureCollection::class)) {
-            throw new InvalidGeoJsonException('Expected '.FeatureCollection::class.', got '.get_class($geoJson));
+            throw new InvalidGeoJsonException('Expected ' . FeatureCollection::class . ', got ' . get_class($geoJson));
         }
 
         $set = [];
@@ -146,7 +146,7 @@ class GeometryCollection extends Geometry implements IteratorAggregate, ArrayAcc
      *
      * @return \GeoJson\Geometry\GeometryCollection
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         $geometries = [];
         foreach ($this->items as $geometry) {
